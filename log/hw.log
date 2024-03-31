@@ -1,0 +1,11 @@
+INFO 2024-03-31 16:02:45,810 autoreload Watching for file changes with StatReloader
+INFO 2024-03-31 16:02:48,942 views Index page accessed
+INFO 2024-03-31 16:02:48,944 basehttp "GET / HTTP/1.1" 200 19
+DEBUG 2024-03-31 16:02:54,545 views About page accessed
+INFO 2024-03-31 16:02:54,548 basehttp "GET /about/ HTTP/1.1" 200 23
+INFO 2024-03-31 16:08:34,306 autoreload C:\Users\airin\PycharmProjects\Django\hw\shop_app\urls.py changed, reloading.
+INFO 2024-03-31 16:08:35,149 autoreload Watching for file changes with StatReloader
+DEBUG 2024-03-31 16:08:40,035 views Contact page accessed
+INFO 2024-03-31 16:08:40,037 basehttp "GET /contact/ HTTP/1.1" 200 25
+INFO 2024-03-31 16:09:08,173 autoreload C:\Users\airin\PycharmProjects\Django\hw\shop_app\views.py changed, reloading.
+INFO 2024-03-31 16:09:08,804 autoreload Watching for file changes with StatReloader
