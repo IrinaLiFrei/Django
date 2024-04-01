@@ -81,7 +81,11 @@ WSGI_APPLICATION = 'hw.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'shop_db.sqlite3',
+        'OPTIONS': {
+            'timeout': 10,
+        }
     }
 }
 

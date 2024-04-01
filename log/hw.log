@@ -9,3 +9,46 @@ DEBUG 2024-03-31 16:08:40,035 views Contact page accessed
 INFO 2024-03-31 16:08:40,037 basehttp "GET /contact/ HTTP/1.1" 200 25
 INFO 2024-03-31 16:09:08,173 autoreload C:\Users\airin\PycharmProjects\Django\hw\shop_app\views.py changed, reloading.
 INFO 2024-03-31 16:09:08,804 autoreload Watching for file changes with StatReloader
+INFO 2024-03-31 20:06:46,717 views Index page accessed
+INFO 2024-03-31 20:06:46,729 basehttp "GET / HTTP/1.1" 200 19
+WARNING 2024-03-31 20:06:53,573 log Not Found: /toss/
+WARNING 2024-03-31 20:06:53,574 basehttp "GET /toss/ HTTP/1.1" 404 2587
+WARNING 2024-03-31 20:07:13,498 log Not Found: /sem2/toss
+WARNING 2024-03-31 20:07:13,499 basehttp "GET /sem2/toss HTTP/1.1" 404 2599
+DEBUG 2024-03-31 20:07:37,906 views About page accessed
+INFO 2024-03-31 20:07:37,907 basehttp "GET /about/ HTTP/1.1" 200 23
+WARNING 2024-03-31 20:08:54,389 log Not Found: /toss/
+WARNING 2024-03-31 20:08:54,391 basehttp "GET /toss/ HTTP/1.1" 404 2587
+WARNING 2024-03-31 20:09:07,440 log Not Found: /sem2/toss
+WARNING 2024-03-31 20:09:07,441 basehttp "GET /sem2/toss HTTP/1.1" 404 2599
+WARNING 2024-03-31 20:10:19,380 log Not Found: /sem1/
+WARNING 2024-03-31 20:10:19,381 basehttp "GET /sem1/ HTTP/1.1" 404 2587
+INFO 2024-03-31 20:11:19,325 views Index page accessed
+INFO 2024-03-31 20:11:19,327 basehttp "GET / HTTP/1.1" 200 19
+INFO 2024-03-31 23:36:23,501 autoreload Watching for file changes with StatReloader
+INFO 2024-03-31 23:36:26,015 views Index page accessed
+INFO 2024-03-31 23:36:26,017 basehttp "GET / HTTP/1.1" 200 19
+WARNING 2024-03-31 23:36:26,210 log Not Found: /favicon.ico
+WARNING 2024-03-31 23:36:26,210 basehttp "GET /favicon.ico HTTP/1.1" 404 2779
+ERROR 2024-03-31 23:36:33,484 log Internal Server Error: /order/
+Traceback (most recent call last):
+  File "C:\Users\airin\PycharmProjects\Django\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\airin\PycharmProjects\Django\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\airin\PycharmProjects\Django\hw\shop_app\views.py", line 31, in create_order
+    return HttpResponse(f'{form}')
+  File "C:\Users\airin\PycharmProjects\Django\hw\shop_app\models.py", line 32, in __str__
+    return f'{self.client} {self.product} {self.total_price} {self.order_date}'
+  File "C:\Users\airin\PycharmProjects\Django\venv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 264, in __get__
+    raise self.RelatedObjectDoesNotExist(
+shop_app.models.Order.client.RelatedObjectDoesNotExist: Order has no client.
+ERROR 2024-03-31 23:36:33,487 basehttp "GET /order/ HTTP/1.1" 500 71908
+WARNING 2024-03-31 23:37:03,565 log Not Found: /docs
+WARNING 2024-03-31 23:37:03,566 basehttp "GET /docs HTTP/1.1" 404 2758
+WARNING 2024-03-31 23:37:04,885 log Not Found: /docs
+WARNING 2024-03-31 23:37:04,886 basehttp "GET /docs HTTP/1.1" 404 2758
+INFO 2024-03-31 23:53:01,365 autoreload C:\Users\airin\PycharmProjects\Django\hw\shop_app\views.py changed, reloading.
+INFO 2024-03-31 23:53:02,082 autoreload Watching for file changes with StatReloader
+INFO 2024-04-01 00:15:51,018 autoreload C:\Users\airin\PycharmProjects\Django\hw\shop_app\urls.py changed, reloading.
+INFO 2024-04-01 00:15:51,645 autoreload Watching for file changes with StatReloader

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import models
 from django.http import HttpResponse
 import logging
 
@@ -19,6 +20,4 @@ def about(request):
 def contact(request):
     logger.debug('Contact page accessed')
     return HttpResponse('This is the CONTACT page.')
-
-
 
