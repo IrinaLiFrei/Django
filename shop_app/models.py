@@ -30,4 +30,9 @@ class Order(models.Model):
     order_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.client} {self.products} {self.total_price} {self.order_date}'
+        li = []
+        for product in self.products.all():
+            li.append(product)
+
+        return (f'{self.client.name}, список продуктов: {li}, сумма заказа: {self.order_price()} руб., '
+                f'дата заказа: {self.order_date}')

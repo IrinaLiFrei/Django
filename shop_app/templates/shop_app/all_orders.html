@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Заказы клиента {{ client.name }}: {% endblock %}
+{% block content %}
+<h2>Заказы клиента {{ client.name }}:</h2>
+{% for order in orders %}
+<b> Заказ №{{ forloop.counter }} </b>
+<p> Список продуктов в заказе:
+    <ul>
+    {% for product in order.products.all %}
+    <li>{{ product.name }}, цена: {{ product.price }} руб. </li>
+
+    {% endfor %}
+</ul>
+<p>Сумма заказа: {{ order.total_price }} руб.</p>
+    <br>
+{% endfor %}
+{% endblock %}

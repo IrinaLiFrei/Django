@@ -27,4 +27,5 @@ class Command(BaseCommand):
                     order.products.add(product)
                 order.total_price = sum(product.price for product in order.products.all())
                 order.save()
+
         self.stdout.write(self.style.SUCCESS(f'Successfully created {number} clients, products, and orders'))

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Список товаров, заказанных клиентом {{ client.name }} за период с {{ period }}: {% endblock %}
+{% block content %}
+<h2>Список товаров клиента {{ client.name }} за период с {{ period }}:</h2>
+{% for product in ordered_products %}
+    <ul>
+        <li>{{ product.name }}, цена: {{ product.price }} руб. </li>
+    </ul>
+{% endfor %}
+<br>
+{% endblock %}

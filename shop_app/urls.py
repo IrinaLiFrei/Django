@@ -5,5 +5,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    # path('order/', views.create_order, name='create_order'),
+    path('order/', views.order_info, name='orders_info'),
+    path('order/<int:client_id>/', views.all_orders, name='all_orders'),
+    path('order/<int:client_id>/<str:period>/', views.orders_for_period, name='orders_for_period'),
+    path('order/<int:client_id>/days/<int:days>/', views.orders_for_days, name='orders_for_days'),
 ]
