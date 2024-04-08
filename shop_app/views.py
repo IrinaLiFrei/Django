@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import logging
 from . import models
 from .models import Order, Product
+from .forms import EditProductForm
 
 logger = logging.getLogger(__name__)
 
@@ -53,11 +54,12 @@ def orders_for_period(request, client_id, period):
     now = datetime.date.today()
     if period == 'week':
         requested_period = now - datetime.timedelta(days=7)
-    elif period =='month':
+    elif period == 'month':
         requested_period = now - datetime.timedelta(days=30)
     elif period == 'year':
         requested_period = now - datetime.timedelta(days=365)
-    ordered_products = Product.objects.filter(order__in=orders, order__order_date__range=[requested_period, now]).distinct()
+    ordered_products = Product.objects.filter(order__in=orders,
+                                              order__order_date__range=[requested_period, now]).distinct()
     context = {
         'client_id': client_id,
         'period': requested_period,
@@ -72,10 +74,46 @@ def orders_for_days(request, client_id, days):
     orders = Order.objects.filter(client=client)
     now = datetime.date.today()
     requested_period = now - datetime.timedelta(days=days)
-    ordered_products = Product.objects.filter(order__in=orders, order__order_date__range=[requested_period, now]).distinct()
+    ordered_products = Product.objects.filter(order__in=orders,
+                                              order__order_date__range=[requested_period, now]).distinct()
     context = {
         'client_id': client_id,
         'period': requested_period,
         'ordered_products': ordered_products
     }
     return render(request, 'shop_app/orders_for_period.html', context)
+
+
+# Создайте форму для редактирования товаров в базе данных.
+# Измените модель продукта, добавьте поле для хранения фотографии продукта.
+# Создайте форму, которая позволит сохранять фото.
+
+
+def edit_form(request, product_id):
+    product = get_object_or_404(models.Product, pk=product_id)
+    if request.method == 'POST':
+        form = EditProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product.name = form.cleaned_data['name']
+            product.description = form.cleaned_data['description']
+            product.price = form.cleaned_data['price']
+            product.stock = form.cleaned_data['stock']
+            product.entry_date = form.cleaned_data['entry_date']
+            product.product_image = form.cleaned_data['photo']
+            product.save()
+            message = f'Товар {product.name} изменен.'
+            if 'photo' in request.FILES:
+                product.product_image = request.FILES['photo']
+                product.save()
+    else:
+        initial_data = {
+            'name': product.name,
+            'description': product.description,
+            'price': product.price,
+            'stock': product.stock,
+            'entry_date': product.entry_date,
+            'image': product.product_image,
+        }
+        form = EditProductForm(initial=initial_data)
+        message = f'Внесите изменения в товар {product.id} - {product.name}.'
+    return render(request, 'shop_app/edit_form.html', {'form': form, 'message': message})

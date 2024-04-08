@@ -86,6 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'NAME': BASE_DIR / 'shop_db_v2.sqlite3',
+        # 'NAME': BASE_DIR / 'articles.sqlite3',
         'OPTIONS': {
             'timeout': 10,
         }
@@ -171,3 +172,7 @@ LOGGING = {
         },
     },
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
+
