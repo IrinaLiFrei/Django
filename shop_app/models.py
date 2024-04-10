@@ -9,7 +9,7 @@ class Client(models.Model):
     reg_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} {self.phone} {self.reg_date}'
+        return f'{self.name}'
 
 
 class Product(models.Model):
@@ -21,7 +21,7 @@ class Product(models.Model):
     product_image = models.ImageField(blank=True, upload_to='products/')
 
     def __str__(self):
-        return f'{self.name} {self.price}'
+        return f'{self.name} / {self.price}'
 
 
 class Order(models.Model):
@@ -35,5 +35,5 @@ class Order(models.Model):
         for product in self.products.all():
             li.append(product)
 
-        return (f'{self.client.name}, список продуктов: {li}, сумма заказа: {self.order_price()} руб., '
+        return (f'{self.client.name}, список продуктов: {li}, сумма заказа: {self.total_price} руб., '
                 f'дата заказа: {self.order_date}')
