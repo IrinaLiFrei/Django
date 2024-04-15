@@ -3,6 +3,8 @@
 # Создайте форму, которая позволит сохранять фото.
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 
 class EditProductForm(forms.Form):
@@ -18,3 +20,65 @@ class ImageForm(forms.Form):
     image = forms.ImageField(required=False)
 
 
+# Форма авторизации и кнопка выхода
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=150,
+        label='Имя пользователя',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите имя пользователя'
+        })
+    )
+    password = forms.CharField(
+        max_length=128,
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите пароль'
+        })
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+
+# Форма регистрации
+class RegistrationForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=150,
+        label='Имя пользователя',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите имя пользователя'
+        })
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите email'
+        })
+    )
+    password = forms.CharField(
+        max_length=128,
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите пароль'
+        })
+    )
+    password_repeat = forms.CharField(
+        max_length=128,
+        label='Подтверждение пароля',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Повторите пароль'
+        })
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'password_repeat', ]
+
+# #################################################################

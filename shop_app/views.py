@@ -1,10 +1,16 @@
 import datetime
+
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 import logging
+
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 from . import models
 from .models import Order, Product
-from .forms import EditProductForm
+from .forms import EditProductForm, RegistrationForm, LoginForm
 
 logger = logging.getLogger(__name__)
 
@@ -117,3 +123,30 @@ def edit_form(request, product_id):
         form = EditProductForm(initial=initial_data)
         message = f'Внесите изменения в товар {product.id} - {product.name}.'
     return render(request, 'shop_app/edit_form.html', {'form': form, 'message': message})
+
+
+# Форма авторизации и кнопка выхода
+class CustomLoginView(LoginView):
+    authentication_form = LoginForm
+    template_name = 'shop_app/login.html'
+    extra_context = {'title': 'Авторизация на сайте'}
+
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+# Форма регистрации
+
+
+class CustomRegistrationView(CreateView):
+    form_class = RegistrationForm
+    template_name = 'shop_app/reg_form.html'
+    extra_context = {'title': 'Регистрация на сайте'}
+
+    def get_success_url(self):
+        return reverse_lazy('login')
+
+    def form_valid(self, form):
+        user = form.save()
+        return super().form_valid(form)
+
+###############################################################################

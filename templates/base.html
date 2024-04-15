@@ -5,6 +5,25 @@
     <title>{% block title %}My web-site{% endblock %}</title>
 </head>
 <body>
+<header>
+    {% if user.is_authenticated %}
+    <div class="dropdown">
+        <button class="btn btn-primary my-btn dropdown-toggle me-3" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            {{ request.user }}
+        </button>
+        <ul class="dropdown-menu dd-color">
+            <li>
+                <a class="dropdown-item dd-item-color" href="{% url 'shop_app:logout' %}">Выйти</a>
+            </li>
+        </ul>
+    </div>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link btn btn-primary my-btn me-3" href="{% url 'shop_app:login' %}">Войти</a>
+    </li>
+{% endif %}
+</header>
     {% block content %}
     <p> Скоро тут появится текст...</p>
     {% endblock %}
